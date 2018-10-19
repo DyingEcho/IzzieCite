@@ -1,4 +1,9 @@
-var readline = require('readline-sync')
+const readline = require('readline-sync')
+const moment = require('moment')
+
+let citations = []
+let userExit = false
+
 
 class WebCitation {
 	constructor(
@@ -33,10 +38,30 @@ ${this.datePublished}, ${this.dateAccessed}, <a href="http://${this.url}">${this
   }
 }
 
-testCitation = new WebCitation(
-	"Court", "Theo",
-	"Intro to JavaScript", "Theo's Tutorials",
-	"24 May 2005", "25 May 2005",
-	"google.com", publisher="Theo Incorporated"
-)
-console.log(testCitation.citationHTML)
+while (true) {
+	if (citations.length === 1) {
+		console.log("Your citation so far is:")
+		console.log(`	- ${citations[0].citationText}`)
+	} else if (citations.length === 0) {
+		console.log("You don't have any citations right now. Create one!")
+	} else {
+		console.log("Your citations so far are:")
+		citations.forEach(function(citation) {
+			console.log(`	- ${citation.citationText}`)
+		})
+	}
+	userExit = !readline.keyInYN('Create a new citation?')
+	if (userExit) {break}  // We do this instead of while(!userExit) to allow people to check citations without creating one
+
+	// now we create a new citation
+	citations.push(new WebCitation(
+		readline.question("Author first name > "),
+		readline.question("Author last name > "),
+		readline.question("Page title > "),
+		readline.question("Website title >"),
+		readline.question("Date published >"),
+		readline.question("Date accessed >"),
+		readline.question("Page URL >"),
+		publisher = readline.question("Publisher (leave blank if same as website title) >")
+	))
+}
