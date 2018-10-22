@@ -1,0 +1,52 @@
+#container {
+    text-align: center;
+}
+
+#header {
+    margin-bottom: 3em;
+    margin-top: 2em;
+} 
+#header h3 {
+    color: darkgrey;
+    font-size: 1em;
+}
+
+#citationList {
+    display: inline-block;
+    float: left;
+    margin-left: 15%;
+    width: 30%;
+} #citationList #citations {
+    border: 1px solid darkgrey;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 1.5em;
+}
+
+#col2 {
+    display: inline-block;
+    float: right;
+    margin-right: 15%;
+    width: 30%
+}
+
+#creationForm form {
+    border: 1px solid darkgrey;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 1.5em;
+    overflow: auto;
+} #creationForm form label {
+    float: left;
+} .textBox {
+    float: right;
+} #formButtons {
+    margin-top: 50px;
+}
+
+#adSpace p {
+    font-size: 0.5em;
+} #adSpace img {
+    height: 200px;
+    width: 100%;
+}
