@@ -1,3 +1,6 @@
+/*jslint
+    es6
+*/
 const readline = require('readline-sync')
 const moment = require('moment')
 
@@ -55,12 +58,12 @@ while (true) {
 
 	// now we create a new citation
 	citations.push(new WebCitation(
-		readline.question("Author first name > "),
-		readline.question("Author last name > "),
+		readline.question("Author last (family) name > "),
+		readline.question("Author first (given) name > "),
 		readline.question("Page title > "),
 		readline.question("Website title >"),
-		readline.question("Date published >"),
-		readline.question("Date accessed >"),
+		moment.months(readline.keyInSelect(moment.months(), "Month published", cancel=false)) + " " + readline.question("Day of month published >") + " " + readline.question("Year published >"),
+		moment.months(readline.keyInSelect(moment.months(), "Month accessed", cancel=false)) + " " + readline.question("Day of month accessed >") + " " + readline.question("Year accessed >"),
 		readline.question("Page URL >"),
 		publisher = readline.question("Publisher (leave blank if same as website title) >")
 	))
