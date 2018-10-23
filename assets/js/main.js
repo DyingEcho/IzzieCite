@@ -1,11 +1,13 @@
-/*jslint
-    es6
-*/
-const readline = require('readline-sync')
-const moment = require('moment')
-
 let citations = []
-let userExit = false
+
+function htmlEscape(str) {
+    return str 
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
 
 
 class WebCitation {
@@ -41,30 +43,51 @@ ${this.datePublished}, ${this.dateAccessed}, <a href="http://${this.url}">${this
   }
 }
 
-while (true) {
-	if (citations.length === 1) {
-		console.log("Your citation so far is:")
-		console.log(`	- ${citations[0].citationText}`)
-	} else if (citations.length === 0) {
-		console.log("You don't have any citations right now. Create one!")
-	} else {
-		console.log("Your citations so far are:")
-		citations.forEach(function(citation) {
-			console.log(`	- ${citation.citationText}`)
-		})
-	}
-	userExit = !readline.keyInYN('Create a new citation?')
-	if (userExit) {break}  // We do this instead of while(!userExit) to allow people to check citations without creating one
 
-	// now we create a new citation
-	citations.push(new WebCitation(
-		readline.question("Author last (family) name > "),
-		readline.question("Author first (given) name > "),
-		readline.question("Page title > "),
-		readline.question("Website title >"),
-		moment.months(readline.keyInSelect(moment.months(), "Month published", cancel=false)) + " " + readline.question("Day of month published >") + " " + readline.question("Year published >"),
-		moment.months(readline.keyInSelect(moment.months(), "Month accessed", cancel=false)) + " " + readline.question("Day of month accessed >") + " " + readline.question("Year accessed >"),
-		readline.question("Page URL >"),
-		publisher = readline.question("Publisher (leave blank if same as website title) >")
-	))
+function updateCitationList() {
+    let newCitationListHTML = ""
+    citations.forEach(element => {
+        newCitationListHTML += `<li> ${element.citationHTML} </li>
+`
+    })
+    $("#citationList").html(newCitationListHTML)
 }
+
+function resetCitationList() {
+    $("#citationList").html('Looks like you don\'t have any citations made yet!')
+    citations = ""
+}
+
+
+
+$("#submitButton").on("click", event => {
+    // Handle dates
+    let datePublished = new Date(
+        htmlEscape($("#datePublishedYear").val()),
+        htmlEscape($("#datePublishedMonth").val()) -1,
+        htmlEscape($("#datePublishedDay").val())
+    )
+    let dateAccessed = new Date(
+        htmlEscape($("#dateAccessedYear").val()),
+        htmlEscape($("#dateAccessedMonth").val()) - 1,
+        htmlEscape($("#dateAccessedDay").val())
+    )
+    dateFormat = {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    }
+    datePublished = datePublished.toLocaleDateString("en-GB", dateFormat)
+    dateAccessed = dateAccessed.toLocaleDateString("en-GB", dateFormat)
+    citations.push(new WebCitation(
+        htmlEscape($("#authorLast").val()),
+        htmlEscape($("#authorFirst").val()),
+        htmlEscape($("#pageTitle").val()),
+        htmlEscape($("#siteTitle").val()),
+        datePublished,
+        dateAccessed,
+        htmlEscape($("#manualCiteURL").val())
+    ))
+    
+    updateCitationList()
+})
