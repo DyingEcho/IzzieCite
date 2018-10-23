@@ -61,6 +61,7 @@ function resetCitationList() {
 
 
 $("#submitButton").on("click", event => {
+    event.preventDefault()
     // Handle dates
     let datePublished = new Date(
         htmlEscape($("#datePublishedYear").val()),
