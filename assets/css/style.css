@@ -11,16 +11,19 @@
     font-size: 1em;
 }
 
-#citationList {
+#citationBox {
     display: inline-block;
     float: left;
     margin-left: 15%;
     width: 30%;
-} #citationList #citations {
+} #citationBox #citations {
     border: 1px solid darkgrey;
     padding: 20px;
     border-radius: 15px;
     margin-top: 1.5em;
+    list-style: none;
+} #citationsResetButton {
+    margin-top: 1em;
 }
 
 #col2 {
@@ -30,18 +33,25 @@
     width: 30%
 }
 
-#creationForm form {
+#creationForm {
     border: 1px solid darkgrey;
+    padding: 0 20px 20px;
+    border-radius: 15px;
+    margin-top: 1.5em;
+} #formButtons {
+    margin-top: 50px;
+} #creationForm label {
+    margin-top: 20px;
+}
+
+#autoCiteForm {
     padding: 20px;
+    padding-top: 0;
     border-radius: 15px;
     margin-top: 1.5em;
     overflow: auto;
-} #creationForm form label {
+} #autoCiteForm label {
     float: left;
-} .textBox {
-    float: right;
-} #formButtons {
-    margin-top: 50px;
 }
 
 #adSpace p {
@@ -49,4 +59,6 @@
 } #adSpace img {
     height: 200px;
     width: 100%;
+} #adSpace {
+    margin-top: 2em;
 }

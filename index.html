@@ -36,61 +36,72 @@
                 <div id="citationBox">
                     <h4>Your Citations</h4>
                     <ul id="citations">
-                        Looks like you don't have any citations made yet!
+                        <div id="citationList">Looks like you don't have any citations made yet!</div>
+                        <button class="btn btn-danger" onclick="resetCitationList()" id="citationsResetButton">Reset</button>
                     </ul>
                 </div>
             </div>
             <div class="col-sm" id="col2">
-                <div id="creationForm">
+                <div>
                     <h4>Create a Citation</h4>
-                    <form>
-                        <!-- Author -->
-                            <div class="inputField">
-                            <label for="authorFirst">Author's first name:</label>
-                            <input id="authorFirst" type="text" class="textBox" />
+                    <form id="creationForm">
+                        
+                        <label for="authorFirst">Author:</label>
+                        <div class="input-group">
+                            <input type="text" placeholder="First (given)" id="authorFirst" class="form-control" />
+                            <input type="text" placeholder="Last (family)" id="authorLast" class="form-control" />
+                        </div>
+                        
+                        <label for="authorFirst">Page:</label>
+                        <input type="text" placeholder="Page or article title" id="pageTitle" class="form-control" />
+                        <input type="text" placeholder="Website title" id="siteTitle" class="form-control" />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">http://</span>
                             </div>
-                            <br />
-                            <div class="inputField">
-                            <label for="authorLast">Author's last name:</label>
-                            <input id="authorLast" type="text" class="textBox" />
+                            <input type="text" placeholder="Page URL" id="manualCiteURL" class="form-control" />
+                        </div>
+                        
+                        <label for="">Dates:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Published:</span>
                             </div>
-                            <br />
-                            <br />
-                        <!-- Website -->
-                            <div class="inputField">
-                            <label for="pageTitle">Title of page:</label>
-                            <input id="pageTitle" type="text" class="textBox" />
+                            <input type="text" placeholder="DD" id="datePublishedDay" class="form-control"/>
+                            <input type="text" placeholder="MM" id="datePublishedMonth" class="form-control"/>
+                            <input type="text" placeholder="YYYY" id="datePublishedYear" class="form-control"/>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Accessed:</span>
                             </div>
-                            <br />
-                            <div class="inputField">
-                            <label for="siteTitle">Title of website:</label>
-                            <input id="siteTitle" type="text" class="textBox" />
-                            </div>
-                            <br />
-                            <br />
-                        <!-- Dates -->
-                            <div class="inputField">
-                            <label for="datePublished">Date published:</label>
-                            <input id="datePublished" type="text" class="textBox" />
-                            </div>
-                            <br />
-                            <div class="inputField">
-                            <label for="dateAccessed">Date accessed:</label>
-                            <input id="dateAccessed" type="text" class="textBox" />
-                            </div>
+                            <input type="text" placeholder="DD" id="dateAccessedDay" class="form-control"/>
+                            <input type="text" placeholder="MM" id="dateAccessedMonth" class="form-control"/>
+                            <input type="text" placeholder="YYYY" id="dateAccessedYear" class="form-control"/>
+                        </div>
                         <!-- Submit/Reset -->
                             <div id="formButtons">
-                                <input type="submit" class="btn btn-primary" class="formButton" value="Go!">
-                                <input type="button" class="btn btn-danger" id="formButton" value="Reset">
+                                <input type="submit" class="btn btn-primary formButton" id="submitButton" value="Go!">
+                                <input type="reset" class="btn btn-danger" id="resetButton" value="Reset">
                             </div>
                     </form>
+                    <hr />
+                    <form id="autoCiteForm">
+                        <h5>Try our experimental AutoCite! <i class="fas fa-flask"></i></h5>
+                        <div class="input-group mb-3">
+                            <input id="autoCiteURL" type="text" class="textBox form-control" placeholder="Page URL"/>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-primary">Go!</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div id="adSpace">
+                <!--<div id="adSpace">
                     <a href="#">
                         <img src="https://via.placeholder.com/400x300.png" />
                         <p>Advertisment</p>
                     </a>
-                </div>
+                </div>-->
             </div>
         </div>
     </body>
