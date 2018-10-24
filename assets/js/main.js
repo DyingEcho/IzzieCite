@@ -55,7 +55,7 @@ function updateCitationList() {
 
 function resetCitationList() {
     $("#citationList").html('Looks like you don\'t have any citations made yet!')
-    citations = ""
+    citations = []
 }
 
 
