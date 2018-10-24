@@ -55,40 +55,42 @@ function updateCitationList() {
 
 function resetCitationList() {
     $("#citationList").html('Looks like you don\'t have any citations made yet!')
-    citations = ""
+    citations = []
 }
 
 
+function getMLADate(year, month, day) {
+    let date = new Date(year, month - 1, day)
+    return date.toLocaleDateString(
+        "en-GB", 
+        dateFormat = {day: "numeric", month: "long", year: "numeric"}
+    )
+}
 
-$("#submitButton").on("click", event => {
-    event.preventDefault()
-    // Handle dates
-    let datePublished = new Date(
-        htmlEscape($("#datePublishedYear").val()),
-        htmlEscape($("#datePublishedMonth").val()) -1,
-        htmlEscape($("#datePublishedDay").val())
-    )
-    let dateAccessed = new Date(
-        htmlEscape($("#dateAccessedYear").val()),
-        htmlEscape($("#dateAccessedMonth").val()) - 1,
-        htmlEscape($("#dateAccessedDay").val())
-    )
-    dateFormat = {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-    }
-    datePublished = datePublished.toLocaleDateString("en-GB", dateFormat)
-    dateAccessed = dateAccessed.toLocaleDateString("en-GB", dateFormat)
-    citations.push(new WebCitation(
-        htmlEscape($("#authorLast").val()),
-        htmlEscape($("#authorFirst").val()),
-        htmlEscape($("#pageTitle").val()),
-        htmlEscape($("#siteTitle").val()),
-        datePublished,
-        dateAccessed,
-        htmlEscape($("#manualCiteURL").val())
-    ))
-    
-    updateCitationList()
-})
+$(  // only start when DOM ready
+    $("#submitButton").on("click", event => {
+        event.preventDefault()
+        // Handle dates
+        let datePublished = getMLADate(
+            htmlEscape($("#datePublishedYear").val()),
+            htmlEscape($("#datePublishedMonth").val()) -1,
+            htmlEscape($("#datePublishedDay").val())
+        )
+        let dateAccessed = getMLADate(
+            htmlEscape($("#dateAccessedYear").val()),
+            htmlEscape($("#dateAccessedMonth").val()) - 1,
+            htmlEscape($("#dateAccessedDay").val())
+        )
+        citations.push(new WebCitation(
+            htmlEscape($("#authorLast").val()),
+            htmlEscape($("#authorFirst").val()),
+            htmlEscape($("#pageTitle").val()),
+            htmlEscape($("#siteTitle").val()),
+            datePublished,
+            dateAccessed,
+            htmlEscape($("#manualCiteURL").val())
+        ))
+
+        updateCitationList()
+    })
+)
