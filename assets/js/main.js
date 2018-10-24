@@ -59,27 +59,28 @@ function resetCitationList() {
 }
 
 
+function getMLADate(year, month, day) {
+    let date = new Date(year, month - 1, day)
+    return date.toLocaleDateString(
+        "en-GB", 
+        dateFormat = {day: "numeric", month: "long", year: "numeric"}
+    )
+}
+
 
 $("#submitButton").on("click", event => {
     event.preventDefault()
     // Handle dates
-    let datePublished = new Date(
+    let datePublished = getMLADate(
         htmlEscape($("#datePublishedYear").val()),
         htmlEscape($("#datePublishedMonth").val()) -1,
         htmlEscape($("#datePublishedDay").val())
     )
-    let dateAccessed = new Date(
+    let dateAccessed = getMLADate(
         htmlEscape($("#dateAccessedYear").val()),
         htmlEscape($("#dateAccessedMonth").val()) - 1,
         htmlEscape($("#dateAccessedDay").val())
     )
-    dateFormat = {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-    }
-    datePublished = datePublished.toLocaleDateString("en-GB", dateFormat)
-    dateAccessed = dateAccessed.toLocaleDateString("en-GB", dateFormat)
     citations.push(new WebCitation(
         htmlEscape($("#authorLast").val()),
         htmlEscape($("#authorFirst").val()),
