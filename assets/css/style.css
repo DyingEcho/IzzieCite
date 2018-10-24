@@ -9,6 +9,9 @@
 #header h3 {
     color: darkgrey;
     font-size: 1em;
+} #header a {
+    color: darkgrey;
+    font-weight: 700
 }
 
 #citationBox {
