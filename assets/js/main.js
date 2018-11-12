@@ -98,15 +98,17 @@ function getMLADate(year, month, day) {
     )
 }
 
-//Load citations from cookies (if cookies exist)
-if(getCookie("cites") != ""){
-    var data = getCookie("cites");
+function loadCitationParamString(data){//Loads citation from jQuery.param function
     var data = deparam(data)["data"];//Reverse the serialization, returns an array of objects
     for(var i in data){//Convert each object to webcitation, push into citation
         citations.push(constructCitationFromObj(data[i]));
     }
 
     updateCitationList();//Update citation list to display loaded citations
+}
+//Load citations from cookies (if cookies exist)
+if(getCookie("cites") != ""){
+    loadCitationParamString(getCookie("cites"));
 }
 
 $(  // only start when DOM ready
