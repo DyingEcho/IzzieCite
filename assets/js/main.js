@@ -1,27 +1,5 @@
 let citations = []
 
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
 function htmlEscape(str) {
     return str
         .replace(/&/g, '&amp;')
@@ -72,7 +50,7 @@ function constructCitationFromObj(obj){//Converts object to web citation
 function updateCitationList() {
     var data = {data: citations} //Wrap citations in object
     var serialized = jQuery.param(data);//Serialize...
-    setCookie("cites", serialized,120);//Add to cookies
+    Cookies.set("cites", serialized);//Add to cookies
     let newCitationListHTML = ""
     citations.forEach(element => {
         newCitationListHTML += `<li> ${element.citationHTML} </li>
@@ -105,8 +83,8 @@ function loadCitationParamString(data){//Loads citation from jQuery.param functi
     updateCitationList();//Update citation list to display loaded citations
 }
 //Load citations from cookies (if cookies exist)
-if(getCookie("cites") != ""){
-    loadCitationParamString(getCookie("cites"));
+if(Cookies.get("cites") != undefined){
+    loadCitationParamString(Cookies.get("cites"));
 }
 
 $(  // only start when DOM ready
