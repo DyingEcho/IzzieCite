@@ -34,27 +34,34 @@
 </head>
 
 
-    <body>
-        <div id="container">
-            <div id="header">
-                <h1>SMCite</h1>
-                <h3>a neat little citation generator</h3>
-                <h3>project by <a href="//theocourt.github.io">theo c</a></h3>
+<body>
+    <div id="container">
+        <div id="header">
+            <h1>SMCite</h1>
+            <h3>a neat little citation generator</h3>
+            <h3>project by <a href="//theocourt.github.io">theo c</a></h3>
+        </div>
+        <div class="col-sm">
+            <div id="citationBox">
+                <h4>Your Citations</h4>
+                <ul id="citations">
+                    <div id="citationList">Looks like you don't have any citations made yet!</div>
+                    <button class="btn btn-danger" onclick="resetCitationList()" id="citationsResetButton">Reset</button>
+                </ul>
             </div>
-            <div class="col-sm">
-                <div id="citationBox">
-                    <h4>Your Citations</h4>
-                    <ul id="citations">
-                        <div id="citationList">Looks like you don't have any citations made yet!</div>
-                        <button class="btn btn-danger" onclick="resetCitationList()" id="citationsResetButton">Reset</button>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm" id="col2">
-                <div>
-                    <h4>Create a Citation</h4>
-                    <form id="creationForm">
-
+        </div>
+        <div class="col-sm" id="col2">
+            <div>
+                <h4>Create a Citation</h4>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Citation Type
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                        </ul>
+                    </div>
+                <form id="creationForm">
+                        <input type="hidden" id="MLAAccessDate"/>
+                        <input type="hidden" id="MLAPublishDate" />
                         <label for="authorFirst">Author:</label>
                         <div class="input-group">
                             <input type="text" placeholder="First (given)" id="authorFirst" class="form-control" />
@@ -89,10 +96,10 @@
                             <input type="number" placeholder="YYYY" id="dateAccessedYear" class="form-control"/>
                         </div>
                         <!-- Submit/Reset -->
-                            <div id="formButtons">
-                                <input type="submit" class="btn btn-primary formButton" id="submitButton" value="Go!">
-                                <input type="reset" class="btn btn-danger" id="resetButton" value="Reset">
-                            </div>
+                        <div id="formButtons">
+                            <input type="submit" class="btn btn-primary formButton" id="submitButton" value="Go!">
+                            <input type="reset" class="btn btn-danger" id="resetButton" value="Reset">
+                        </div>
                     </form>
                     <hr />
                     <form id="autoCiteForm">
@@ -106,14 +113,14 @@
                     </form>
                 </div>
                 <!--<div id="adSpace">
-                    <a href="#">
-                        <img src="https://via.placeholder.com/400x300.png" />
-                        <p>Advertisment</p>
-                    </a>
-                </div>-->
-            </div>
-        </div>
-    </body>
+                <a href="#">
+                <img src="https://via.placeholder.com/400x300.png" />
+                <p>Advertisment</p>
+            </a>
+        </div>-->
+    </div>
+</div>
+</body>
 
 <!-- Deparam -->
 <script src="https://cdn.jsdelivr.net/gh/il8677/jquery-additions/deparam.js" charset="utf-8"></script>
