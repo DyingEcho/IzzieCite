@@ -1,7 +1,7 @@
 let citations = []
 
 function htmlEscape(str) {
-    return str 
+    return str
         .replace(/&/g, '&amp;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;')
@@ -43,14 +43,21 @@ ${this.datePublished}, ${this.dateAccessed}, <a href="http://${this.url}">${this
   }
 }
 
+function constructCitationFromObj(obj){//Converts object to web citation
+    return new WebCitation(obj.authorLast,obj.authorFirst,obj.pageTitle,obj.siteTitle,obj.datePublished,obj.dateAccessed,obj.url);
+}
 
 function updateCitationList() {
+    var data = {data: citations} //Wrap citations in object
+    var serialized = jQuery.param(data);//Serialize...
+    Cookies.set("cites", serialized);//Add to cookies
     let newCitationListHTML = ""
     citations.forEach(element => {
         newCitationListHTML += `<li> ${element.citationHTML} </li>
 `
     })
     $("#citationList").html(newCitationListHTML)
+
 }
 
 function resetCitationList() {
@@ -62,12 +69,26 @@ function resetCitationList() {
 function getMLADate(year, month, day) {
     let date = new Date(year, month - 1, day)
     return date.toLocaleDateString(
-        "en-GB", 
+        "en-GB",
         dateFormat = {day: "numeric", month: "long", year: "numeric"}
     )
 }
 
+function loadCitationParamString(data){//Loads citation from jQuery.param function
+    var data = deparam(data)["data"];//Reverse the serialization, returns an array of objects
+    for(var i in data){//Convert each object to webcitation, push into citation
+        citations.push(constructCitationFromObj(data[i]));
+    }
+
+    updateCitationList();//Update citation list to display loaded citations
+}
+//Load citations from cookies (if cookies exist)
+if(Cookies.get("cites") != undefined){
+    loadCitationParamString(Cookies.get("cites"));
+}
+
 $(  // only start when DOM ready
+
     $("#submitButton").on("click", event => {
         event.preventDefault()
         // Handle dates

@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
-    
-    
+
+
     <head>
         <meta charset="utf-8" />
         <title>SMCite</title>
         <!-- Bootstrap -->
-            <link 
+            <link
                     rel="stylesheet"
-                    href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
-                    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+                    href="http://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+                    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
                     crossorigin="anonymous" />
             <script
-                    src="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
-                    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+                    src="http://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
                     crossorigin="anonymous"></script>
         <!-- Font Awesome -->
-        <link 
+        <link
               rel="stylesheet"
               href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
               integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
@@ -24,8 +24,8 @@
         <!-- Custom CSS Styling -->
         <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     </head>
-    
-    
+
+
     <body>
         <div id="container">
             <div id="header">
@@ -46,13 +46,13 @@
                 <div>
                     <h4>Create a Citation</h4>
                     <form id="creationForm">
-                        
+
                         <label for="authorFirst">Author:</label>
                         <div class="input-group">
                             <input type="text" placeholder="First (given)" id="authorFirst" class="form-control" />
                             <input type="text" placeholder="Last (family)" id="authorLast" class="form-control" />
                         </div>
-                        
+
                         <label for="authorFirst">Page:</label>
                         <input type="text" placeholder="Page or article title" id="pageTitle" class="form-control" />
                         <input type="text" placeholder="Website title" id="siteTitle" class="form-control" />
@@ -62,7 +62,7 @@
                             </div>
                             <input type="text" placeholder="Page URL" id="manualCiteURL" class="form-control" />
                         </div>
-                        
+
                         <label for="">Dates:</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -106,8 +106,11 @@
             </div>
         </div>
     </body>
-    
-    
+
+    <!-- Deparam -->
+    <script src="https://cdn.jsdelivr.net/gh/il8677/jquery-additions/deparam.js" charset="utf-8"></script>
+    <!-- jscookie -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <!-- jQuery -->
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
